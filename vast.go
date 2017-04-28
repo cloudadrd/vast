@@ -37,7 +37,7 @@ type Ad struct {
 // URIs necessary to display the ad.
 type InLine struct {
 	// The name of the ad server that returned the ad
-	AdSystem *AdSystem
+	AdSystem *AdSystem `json:"ad_system,omitempty"`
 	// The common name of the ad
 	AdTitle string `json:"ad_title,omitempty"`
 	// One or more URIs that directs the video player to a tracking resource file that the
@@ -46,7 +46,7 @@ type InLine struct {
 	// The container for one or more <Creative> elements
 	Creatives []Creative `xml:"Creatives>Creative" json:"creatives"`
 	// A string value that provides a longer description of the ad.
-	Description string `xml:",omitempty" json:"desc"`
+	Description string `xml:",omitempty" json:"description"`
 	// The name of the advertiser as defined by the ad serving party.
 	// This element can be used to prevent displaying ads with advertiser
 	// competitors. Ad serving parties and publishers should identify how
@@ -78,7 +78,7 @@ type InLine struct {
 // the video player should request when the first frame of the ad is displayed
 type Impression struct {
 	ID  string `xml:"id,attr,omitempty" json:"id,omitempty"`
-	URI string `xml:",cdata" json:"uri,omitempty"`
+	URI string `xml:",cdata" json:"url,omitempty"`
 }
 
 // Pricing provides a value that represents a price that can be used by real-time
@@ -165,7 +165,7 @@ type CompanionAds struct {
 	// All means that the player must attempt to display all. Any means the player
 	// must attempt to play at least one. None means all companions are optional
 	Required   string      `xml:"required,attr,omitempty" json:"required,omitempty"`
-	Companions []Companion `xml:"Companion,omitempty" json:"compaions,omitempty"`
+	Companions []Companion `xml:"Companion,omitempty" json:"companions,omitempty"`
 }
 
 // NonLinearAds contains non linear creatives
@@ -186,7 +186,7 @@ type CreativeWrapper struct {
 	// If present, defines a linear creative
 	Linear *LinearWrapper `xml:",omitempty" json:"linear,omitempty"`
 	// If defined, defins companions creatives
-	CompanionAds *CompanionAdsWrapper `xml:"CompanionAds,omitempty" json:"compaion_ads,omitempty"`
+	CompanionAds *CompanionAdsWrapper `xml:"CompanionAds,omitempty" json:"companion_ads,omitempty"`
 	// If defined, defines non linear creatives
 	NonLinearAds *NonLinearAdsWrapper `xml:"NonLinearAds,omitempty" json:"non_linear_ads,omitempty"`
 }
@@ -420,10 +420,10 @@ type Tracking struct {
 	// complete, mute, unmute, pause, rewind, resume, fullscreen, exitFullscreen, expand,
 	// collapse, acceptInvitation, close, skip, progress.
 	Event string `xml:"event,attr" json:"event"`
-	// The time during the video at which this url should be pinged. Must be present for
+	// The time durlng the video at which this url should be pinged. Must be present for
 	// progress event. Must match (\d{2}:[0-5]\d:[0-5]\d(\.\d\d\d)?|1?\d?\d(\.?\d)*%)
 	Offset *Offset `xml:"offset,attr,omitempty" json:"offset,omitempty"`
-	URI    string  `xml:",cdata" json:"uri"`
+	URI    string  `xml:",cdata" json:"url"`
 }
 
 // StaticResource is the URL to a static file, such as an image or SWF file
@@ -431,7 +431,7 @@ type StaticResource struct {
 	// Mime type of static resource
 	CreativeType string `xml:"creativeType,attr,omitempty" json:"creative_type,omitempty"`
 	// URL to a static file, such as an image or SWF file
-	URI string `xml:",cdata" json:"uri"`
+	URI string `xml:",cdata" json:"url"`
 }
 
 // HTMLResource is a container for HTML data
@@ -458,7 +458,7 @@ type VideoClicks struct {
 // VideoClick defines a click URL for a linear creative
 type VideoClick struct {
 	ID  string `xml:"id,attr,omitempty" json:"id"`
-	URI string `xml:",cdata" json:"uri"`
+	URI string `xml:",cdata" json:"url"`
 }
 
 // MediaFile defines a reference to a linear creative asset
@@ -496,5 +496,5 @@ type MediaFile struct {
 	// (for Flash/Flex), “initParams” (for Silverlight) and “GetVariables” (variables
 	// placed in key/value pairs on the asset request).
 	APIFramework string `xml:"apiFramework,attr,omitempty" json:"api_framework,omitempty"`
-	URI          string `xml:",cdata" json:"uri"`
+	URI          string `xml:",cdata" json:"url"`
 }
