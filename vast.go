@@ -400,9 +400,9 @@ type Icon struct {
 	// The apiFramework defines the method to use for communication with the icon element
 	APIFramework string `xml:"apiFramework,attr,omitempty" json:"api_framework"`
 	// URL to open as destination page when user clicks on the icon.
-	IconClickThrough string `xml:"IconClicks>IconClickThrough,omitempty,cdata" json:"icon_click_through,omitempty"`
+	IconClickThrough string `xml:"IconClicks>IconClickThrough,omitempty" json:"icon_click_through,omitempty"`
 	// URLs to ping when user clicks on the the icon.
-	IconClickTrackings []string `xml:"IconClicks>IconClickTracking,omitempty,cdata" json:"icon_click_trackings,omitempty"`
+	IconClickTrackings []string `xml:"IconClicks>IconClickTracking,omitempty" json:"icon_click_trackings,omitempty"`
 	// URL to a static file, such as an image or SWF file
 	StaticResource *StaticResource `xml:",omitempty" json:"static_resource,omitempty"`
 	// URL source for an IFrame to display the companion element
