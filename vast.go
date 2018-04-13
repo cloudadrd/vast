@@ -13,7 +13,7 @@ type VAST struct {
 	Ads []Ad `xml:"Ad" json:"ads"`
 	// Contains a URI to a tracking resource that the video player should request
 	// upon receiving a “no ad” response
-	Errors []string `xml:"Error" json:"errors"`
+	Errors []string `xml:"Error,>cdata" json:"errors"`
 }
 
 // Ad represent an <Ad> child tag in a VAST document
